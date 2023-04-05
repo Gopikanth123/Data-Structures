@@ -3,12 +3,18 @@ import queue
 que = queue.Queue(maxsize=5)
 
 def put_item():
-    que.put(int(input("Enter the item: ")), block=True, timeout=None)
-    display()
+    if que.qsize()==que.maxsize:
+        print("queue is full!!!")
+    else:
+        que.put(int(input("Enter the item: ")), block=True, timeout=1)
+        display()
 
 def put_nowait_item():
-    que.put_nowait(int(input("Enter the item: ")))
-    display()
+    if que.qsize()==que.maxsize:
+        print("queue is full!!!")
+    else:
+        que.put_nowait(int(input("Enter the item: ")))
+        display()
 
 def get_item():
     if que.empty():
@@ -62,3 +68,4 @@ while True:
         break
     else:
         print("Invalid choice!!!")
+
