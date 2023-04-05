@@ -1,0 +1,106 @@
+import queue
+que=queue.PriorityQueue(maxsize=5)
+def put_item():
+    if que.qsize()==que.maxsize:
+        print("Queue is full!!!")
+    else:
+        que.put(int(input("Enter the priority :-\n")),input("Enter the item:-\n"))
+        display()
+def get_item():
+    if que.empty():
+        print("Queue is empty!!!")
+    else:
+        print(que.get())
+        display()
+def display():
+    if que.empty():
+        print("Queue is empty!!!")
+    else:
+        for i in que.queue:
+            print(i)
+while True:
+    print("select the operations\n1. put_item\n2. get_item\n 3.display\n4. exit\n")
+    ch=int(input("Enter the choice:-"))
+    if ch==1:
+        put_item()
+    elif ch==2:
+        get_item()
+    elif ch==3:
+        display()
+    elif ch==4:
+        break
+    else:
+        print("Enter the correct optin:-")
+        
+        
+ import queue
+
+# pq = queue.PriorityQueue(maxsize=5)
+
+# def put_item():
+#     pq.put((int(input("Enter the priority of the item:- ")), input("Enter the item:- ")), block=True, timeout=None)
+#     display()
+
+# def put_nowait_item():
+#     try:
+#         pq.put_nowait((int(input("Enter the priority of the item:- ")), input("Enter the item:- ")))
+#     except queue.Full:
+#         print("Queue is full, cannot insert new item.")
+
+#     display()
+
+# def get_item():
+#     if pq.empty():
+#         print("Queue is empty!!!")
+#     else:
+#         print(pq.get())
+#         display()
+
+# def get_nowait_item():
+#     if pq.empty():
+#         print("Queue is empty!!!")
+#     else:
+#         try:
+#             print(pq.get_nowait())
+#         except queue.Empty:
+#             print("Queue is empty!!!")
+
+#         display()
+
+# def display():
+#     if pq.empty():
+#         print("Queue is empty!!!")
+#     else:
+#         while not pq.empty():
+#             print(pq.get())
+
+# def length():
+#     print("The length of the queue is:", pq.qsize())
+
+# def peek():
+#     try:
+#         print("The highest priority item in the queue is:", pq.queue[0])
+#     except IndexError:
+#         print("Queue is empty!!!")
+
+# while True:
+#     print("Select the operations\n1. put_item\n2. put_nowait_item\n3. get_item\n4. get_nowait_item\n5. display\n6. length\n7. peek\n8. exit\n")
+#     ch=int(input("Enter the choice:-"))
+#     if ch==1:
+#         put_item()
+#     elif ch==2:
+#         put_nowait_item()
+#     elif ch==3:
+#         get_item()
+#     elif ch==4:
+#         get_nowait_item()
+#     elif ch==5:
+#         display()
+#     elif ch==6:
+#         length()
+#     elif ch==7:
+#         peek()
+#     elif ch==8:
+#         break
+#     else:
+#         break
