@@ -1,0 +1,64 @@
+import queue
+
+que = queue.Queue(maxsize=5)
+
+def put_item():
+    que.put(int(input("Enter the item: ")), block=True, timeout=None)
+    display()
+
+def put_nowait_item():
+    que.put_nowait(int(input("Enter the item: ")))
+    display()
+
+def get_item():
+    if que.empty():
+        print("Queue is empty!!!")
+    else:
+        print(que.get(block=True, timeout=1))
+        display()
+
+def get_nowait_item():
+    if que.empty():
+        print("Queue is empty!!!")
+    else:
+        print(que.get_nowait())
+        display()
+
+def display():
+    if que.empty():
+        print("Queue is empty!!!")
+    else:
+        items = list(que.queue)
+        print("Queue contents:", items)
+
+def length():
+    print("The length of the queue is:", que.qsize())
+
+def peek():
+    if que.empty():
+        print("Queue is empty!!!")
+    else:
+        items = list(que.queue)
+        print("The first and last elements of the queue are:", items[0], items[-1])
+
+while True:
+    print("Select an operation:\n1. put_item\n2. put_nowait_item\n3. get_item\n4. get_nowait_item\n5. display\n6. length\n7. peek\n8. exit\n")
+    ch = int(input("Enter your choice: "))
+    if ch == 1:
+        put_item()
+    elif ch == 2:
+        put_nowait_item()
+    elif ch == 3:
+        get_item()
+    elif ch == 4:
+        get_nowait_item()
+    elif ch == 5:
+        display()
+    elif ch == 6:
+        length()
+    elif ch == 7:
+        peek()
+    elif ch == 8:
+        break
+    else:
+        print("Invalid choice!!!")
