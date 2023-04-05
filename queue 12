@@ -1,0 +1,46 @@
+queue=[]
+#inserting at last and deleting the first
+def enqueue():
+    queue.append(int(input("Enter the item:- ")))
+    display()
+def dequeue():
+    queue.pop(0)
+    display()
+def isEmpty():
+    if not queue:
+        print("queue is empty!!!")
+    else:
+        print("queue is not empty...")
+def peek():
+    print("The last item of the queue is :-",queue[-1])
+def display():
+    if not queue:
+        print("queue is empty!!!")
+    else:
+        for i in queue:
+            print(i)
+def count():
+    if not queue:
+        print("queue is empty")
+    else:
+        print("The length of the queue is :- ",len(queue))
+
+while True:
+    print("select the operations :-\n 1. enqueue\n2. dequeue\n3. isEmpty\n4. peek\n5. display\n6.count\n7. exit")
+    ch=int(input("Enter the choice:-"))
+    if ch==1:
+        enqueue()
+    elif ch==2:
+        dequeue()
+    elif ch==3:
+        isEmpty()
+    elif ch==4:
+        peek()
+    elif ch==5:
+        display()
+    elif ch==6:
+        count()
+    elif ch==7:
+        break
+    else:
+        print("Enter the correct option")
