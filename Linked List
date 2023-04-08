@@ -1,0 +1,150 @@
+class New_Node:
+    def __init__(self,data):
+        self.node=data
+        self.ref=None
+class LinkedList:
+    def __init__(self):
+        self.head=None
+    def print_LL(self):
+        if self.head is None:
+            print("Linked List is empty")
+        else:
+            n=self.head
+            while n is not None:
+                print(n.node,"--->",end=" ")
+                n=n.ref
+            print()
+    def add_begin(self,data):
+        new_node=New_Node(data)
+        new_node.ref=self.head
+        self.head=new_node
+    def add_end(self,data):
+        new_node=New_Node(data)
+        if self.head is None:
+            self.head=new_node
+        else:
+            n=self.head
+            while n.ref is not None:
+                n=n.ref
+            n.ref=new_node
+    def ins_at_pos(self,data,pos):
+        new_node=New_Node(data)
+        n=self.head
+        if pos==0:
+            New_Node.ref=self.head
+            self.head=new_node
+        else:
+            for i in range(pos-1):
+                if n is None:
+                    print("Index out of range!!!")
+                    return
+                n=n.ref
+            new_node.ref=n.ref
+            n.ref=new_node
+    def add_after(self,data,x):
+        new_node=New_Node(data)
+        n=self.head
+        if n is None:
+            print("Linked List is empty!!!")
+            return
+        while n is not None:
+            if n.node==x:
+                new_node.ref=n.ref
+                n.ref=new_node
+                return
+            n=n.ref
+        print("The element ",x," in the Linked List is not found")
+    def add_before(self,data,x):
+        new_node=New_Node(data)
+        n=self.head
+        if n is None:
+            print("Linked List is empty!!!")
+        if self.head.node==x:
+            new_node.ref=self.head
+            self.head=new_node
+            return
+        while n.ref is not None:
+            if n.ref.node==x:
+                new_node.ref=n.ref
+                n.ref=new_node
+                return
+            n=n.ref
+        print("The element ",x," in the Linked List is not found")
+    def insert_empty(self,data):
+        if self.head is None:
+            new_node=New_Node(data)
+            self.head=new_node
+        else:
+            print("The Linked List is not empty>>>")
+    def delete_begin(self):
+        if self.head is None:
+            print("Linked List is empty!!!");
+        else:
+            self.head=self.head.ref
+    def delete_end(self):
+        if self.head is None:
+            print("Linked List is empty!!!")
+        else:
+            n=self.head
+            while n.ref.ref is not None:
+                n=n.ref
+            n.ref=None
+    def delete_at_pos(self,pos):
+        if self.head is None:
+            print("Linked List is empty!!!")
+        else:
+            if(pos==1):
+                self.head=self.head.ref
+            else:
+                n=self.head
+                for i in range(pos-2):
+                    if n is None:
+                        print("Index out of range!!!")
+                        return
+                    n=n.ref
+                if n is None or n.ref is None:
+                    print("Index is out of range!!!")
+                    return
+                n.ref=n.ref.ref
+    def delele_by_value(self,x):
+        if self.head is None:
+            print("Linked List is empty!!!")
+        else:
+            flag=0
+            n=self.head
+            while n is not None and n.node==x:
+                self.head=self.head.ref
+            while n is not None and n.ref is not None:
+                if n.ref.node==x:
+                    n.ref=n.ref.ref
+                    flag=1
+                    break
+                else:
+                    n=n.ref
+            if flag==0:
+                print("Given element is not in the Linked List!!!")
+ll=LinkedList()
+ll.add_begin(10)
+ll.add_begin(20)
+ll.add_begin(30)
+ll.add_end(40)
+ll.add_end(50)
+ll.ins_at_pos(60,4)
+ll.ins_at_pos(70,2)
+# ll.ins_at_pos(80,10)
+ll.add_after(80,20)
+# ll.add_after(90,90)
+ll.add_before(90,70)
+ll.add_before(100,30)
+ll.add_before(110,50)
+# ll.add_before(120,130)
+# ll.insert_empty(10)
+ll.print_LL()
+ll.delete_begin()
+ll.print_LL()
+ll.delete_end()
+ll.print_LL()
+ll.delete_at_pos(8)
+ll.print_LL()
+ll.delele_by_value(200)
+ll.print_LL()
