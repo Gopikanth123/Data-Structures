@@ -1,0 +1,211 @@
+class New_Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+        self.prev=None
+class DoubleLinikedList:
+    def __init__(self):
+        self.head=None
+        self.tail=None
+    def for_print_dll(self):
+        if self.head is None:
+            print("Double Linked List is empty!!!")
+        else:
+            print("Traversing from head >>>")
+            n=self.head
+            while n is not None:
+                print(n.data,'<---->',end=" ")
+                n=n.next
+            print()
+    def back_print_dll(self):
+        if self.head is None:
+            print("Double Liniked List is empty!!!")
+        else:
+            print("Traversing from tail >>>")
+            n=self.tail
+            while n is not None:
+                print(n.data,'<---->',end=" ")
+                n=n.prev
+            print()
+    def add_begin(self,data):
+        new_node=New_Node(data)
+        if self.head is None:
+            self.head=self.tail=new_node
+        else:
+            new_node.next=self.head
+            self.head.prev=new_node
+            self.head=new_node
+    def add_end(self,data):
+        new_node=New_Node(data)
+        if self.head is None:
+            self.head=self.tail=new_node
+        else:
+            new_node.prev=self.tail
+            self.tail.next=new_node
+            self.tail=new_node
+    def ins_at_pos(self,data,pos):
+        new_node=New_Node(data)
+        n=self.head
+        if self.head is None:
+            if pos==0:
+                self.head=self.tail=new_node
+            else:
+                print("Double Liniked List is empty!!!")
+                return
+        else:
+            if pos==0:
+                new_node.next=self.head
+                self.head.prev=new_node
+                self.head=new_node
+            else:
+                for i in range(pos-2):
+                    if n is None:
+                        print("Index out of range!!! The maximum index allowed is ",pos-1)
+                        return
+                    n=n.next
+                new_node.prev=n
+                n.next.prev=new_node
+                new_node.next=n.next
+                n.next=new_node
+    def add_after(self,data,x):
+        new_node=New_Node(data)
+        if self.head is None:
+            print("Double Liniked List is empty!!!")
+        else:
+            if self.tail.data==x:
+                new_node.prev=self.tail
+                self.tail.next=new_node
+                self.tail=new_node
+            else:
+                n=self.head
+                while n is not None:
+                    if n.data==x:
+                        break
+                    n=n.next
+                if n is None:
+                    print("Given node is not in the Double Liniked List!!!")
+                    return
+                else:
+                    new_node.prev=n
+                    new_node.next=n.next
+                    n.next.prev=new_node
+                    n.next=new_node
+    def add_before(self,data,x):
+        new_node=New_Node(data)
+        if self.head is None:
+            print("Double Liniked List is empty!!!")
+        else:
+            n=self.head
+            if n==x:
+                new_node.next=n
+                n.prev=new_node
+            else:
+                while n is not None:
+                    if n.data==x:
+                        new_node.prev=n.prev
+                        new_node.next=n
+                        n.prev.next=new_node
+                        n.prev=new_node
+                        break
+                    n=n.next
+                else:
+                    print("Given node is not in the Double Liniked List!!!")
+                    return
+    def delete_begin(self):
+        if self.head is None:
+            print("Double Liniked List is empty!!!")
+            return
+        else:
+            self.head=self.head.next
+            self.head.prev=None
+    def delete_end(self):
+        if self.head is None:
+            print("Double Liniked List is empty!!!")
+            return
+        else:
+            self.tail=self.tail.prev
+            self.tail.next=None
+    def delete_by_pos(self,pos):
+        if self.head is None:
+            print("Double Liniked List is empty!!!")
+            return
+        else:
+            if pos==0:
+                self.head=self.head.next
+                self.head.prev=None
+            else:
+                n=self.head
+                for i in range(pos-1):
+                    if n is None:
+                        print("Index out of range!!!")
+                        return
+                    n=n.next
+                n.prev.next=n.next
+                n.next.prev=n.prev
+    def delete_by_val(self,x):
+        if self.head is None:
+            print("Double Liniked List is empty!!!")
+            return
+        else:
+            n=self.head
+            if n.data==x:
+                self.head=self.head.next
+                self.head.prev=None
+            elif self.tail.data==x:
+                self.tail=self.tail.prev
+                self.tail.next=None
+            else:
+                while n is not None:
+                    if n.data==x:
+                        break
+                    n=n.next
+                if n is None:
+                    print("Given Node is not in the double linked list!!!")
+                else:
+                    n.prev.next=n.next
+                    n.next.prev=n.prev
+ll=DoubleLinikedList()
+ll.for_print_dll()
+ll.add_begin(10)
+ll.for_print_dll()
+ll.back_print_dll()
+ll.add_begin(20)
+ll.for_print_dll()
+ll.back_print_dll()
+ll.add_begin(30)
+ll.for_print_dll()
+ll.back_print_dll()
+ll.add_begin(40)
+ll.for_print_dll()
+ll.back_print_dll()
+ll.add_end(50)
+ll.add_end(60)
+ll.for_print_dll()
+ll.back_print_dll()
+ll.ins_at_pos(70,5)
+ll.for_print_dll()
+ll.back_print_dll()
+ll.ins_at_pos(80,6)
+ll.for_print_dll()
+ll.back_print_dll()
+ll.add_after(90,80)
+ll.for_print_dll()
+ll.back_print_dll()
+ll.add_after(100,60)
+ll.for_print_dll()
+ll.back_print_dll()
+ll.add_before(110,100)
+ll.for_print_dll()
+ll.back_print_dll()
+ll.delete_begin()
+ll.for_print_dll()
+ll.back_print_dll()
+ll.delete_end()
+ll.for_print_dll()
+ll.back_print_dll()
+ll.delete_by_pos(3)
+ll.for_print_dll()
+ll.back_print_dll()
+ll.delete_by_val(90)
+ll.for_print_dll()
+ll.back_print_dll()
