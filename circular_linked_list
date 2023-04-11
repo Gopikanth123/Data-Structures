@@ -1,0 +1,172 @@
+class New_Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+class Circular_Linked_List:
+    def __init__(self):
+        self.head=None
+    def print_LL(self):
+        if self.head is None:
+            print("Circular Linked List")
+            return
+        else:
+            n=self.head
+            while n.next!=self.head:
+                print(n.data,'--->',end=' ')
+                n=n.next
+            print(n.data)
+    def add_begin(self,data):
+        new_node=New_Node(data)
+        if self.head is None:
+            new_node.next=new_node
+            self.head=new_node
+        else:
+            new_node.next=self.head
+            # self.head=new_node
+            n=self.head
+            while n.next!=self.head:
+                n=n.next
+            n.next=new_node
+            self.head=new_node
+    def add_end(self,data):
+        new_node=New_Node(data)
+        if self.head is None:
+            new_node.next=new_node
+            self.head=new_node
+        else:
+            n=self.head
+            while n.next!=self.head:
+                n=n.next
+            n.next=new_node
+            new_node.next=self.head
+    def ins_at_pos(self,data,pos):
+        new_node=New_Node(data)
+        if pos==0:
+            new_node.next=self.head
+            n=self.head
+            while n.next!=self.head:
+                n=n.next
+            n.next=new_node
+            self.head=new_node
+        else:
+            n=self.head
+            for i in range(pos-2):
+                if n.next==self.head:
+                    print("Index out of bounds!!!")
+                    return
+                n=n.next
+            new_node.next=n.next
+            n.next=new_node
+    def add_after(self,data,x):
+        new_node=New_Node(data)
+        if self.head is None:
+            print("Double Linked list is empty!!!")
+            return
+        else:
+            n=self.head
+            flag=0
+            while n.next!=self.head:
+                if n.data==x:
+                    flag=1
+                    break
+                n=n.next
+            if flag==1:
+                new_node.next=n.next
+                n.next=new_node
+            elif n.data==x:
+                new_node.next=n.next
+                n.next=new_node
+            else:
+                print("Element is not present in the Linked List!!!")
+    def add_before(self,data,x):
+        new_node=New_Node(data)
+        if self.head is None:
+            print("Circular Linked List is empty!!!")
+            return
+        elif self.head.data==x:
+            new_node.next=self.head
+            n=self.head
+            while n.next!=self.head:
+                n=n.next
+            n.next=new_node
+            self.head=new_node
+        else:
+            n=self.head
+            flag=0
+            while n.next.next is not None:
+                if n.next.data==x:
+                    flag=1
+                    break
+                n=n.next
+            new_node.next=n.next
+            n.next=new_node
+    def del_begin(self):
+        if self.head is None:
+            print("Circular_Linked_List is empty!!!")
+            return
+        else:
+            n=self.head
+            while n.next!=self.head:
+                n=n.next
+            n.next=self.head.next
+            self.head=self.head.next
+    def del_end(self):
+        if self.head is None:
+            print("Circular_Linked_List is empty!!!")
+            return
+        else:
+            n=self.head
+            while n.next.next!=self.head:
+                n=n.next
+            n.next=self.head
+    def del_by_val(self,x):
+        if self.head is None:
+            print("Circular_Linked_List is empty!!!")
+            return
+        elif self.head.data==x:
+            n=self.head
+            while n.next!=self.head:
+                n=n.next
+            self.head=self.head.next
+            n.next=self.head
+        else:
+            n=self.head
+            flag=0
+            while n.next!=self.head:
+                if n.next.data==x:
+                    flag=1
+                    break
+                n=n.next
+            n.next=n.next.next
+ll=Circular_Linked_List()
+ll.add_begin(10)
+ll.add_begin(20)
+ll.print_LL()
+ll.add_end(30)
+ll.print_LL()
+ll.add_end(40)
+ll.print_LL()
+ll.add_begin(50)
+ll.add_end(60)
+ll.print_LL()
+ll.ins_at_pos(70,3)
+ll.print_LL()
+ll.ins_at_pos(80,0)
+ll.print_LL()
+ll.add_after(90,80)
+ll.print_LL()
+ll.add_after(100,60)
+ll.print_LL()
+ll.add_before(110,80)
+ll.add_before(120,100)
+ll.print_LL()
+ll.del_begin()
+ll.print_LL()
+ll.del_end()
+ll.print_LL()
+ll.del_by_val(50)
+ll.print_LL()
+ll.del_by_val(80)
+ll.print_LL()
+ll.del_by_val(120)
+ll.print_LL()
